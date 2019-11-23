@@ -1,3 +1,11 @@
-<h1>Hey Woman!! You got this</h1>
+{% extends 'layout.html' %}
+{% block content %}
+    {% for post in posts %}
+    <h1>{{post.title}}</h1>
+    <p>By {{post.author}} on {{post.date_posted}}</p>
+    <p>{{post.content}}</p>
+    {% endfor %}
 
-<p>{{title}}</p>
+    <h1>This is a header tag</h1>
+    {% endblock content %}
+
