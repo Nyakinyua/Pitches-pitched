@@ -22,15 +22,12 @@ class User(UserMixin,db.Model):
     '''
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key=True)
-    username = db.Column(db.String(13), unique=True, nullable=False)
-    email = db.Column(db.String(20), unique=True, nullable=False)
+    username = db.Column(db.String(225), unique=True, nullable=False)
+    email = db.Column(db.String(225), unique=True, nullable=False)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    pass_secure =db.Column(db.String(30), nullable=False)
-    # username = db.Column(db.String(13), unique=True, nullable=False)
-    
-    # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    
-    # posts = db.relationship('Post',backref='author', lazy='True')
+    pass_secure =db.Column(db.String(225), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    pitches = db.relationship('Post',backref='author', lazy='True')
     
     
     @property
@@ -70,13 +67,19 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
-# class Post(db.Model):
-#     id = db.Column(db.Integer,primary_key=True)
-#     title = db.Column(db.String(13), nullable=False)
-#     date_posted = db.Column(db.DateTime,default=datetime.utcnow)
-#     content = db.Column(db.String,nullable=False)
-#     user_id = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
+class Post(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(13), nullable=False)
+    date_posted = db.Column(db.DateTime,default=datetime.utcnow)
+    content = db.Column(db.String,nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
 
-#     def __repr__(self):
+    def __repr__(self):
 
-#         return f"post('{self.title}','{self.date_posted}')"
+        return f"post('{self.title}','{self.date_posted}')"
+
+class Coments(db.Model):
+    __tablename__='comments'
+    id=db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(250))
+    comment= db.Column(db.String())

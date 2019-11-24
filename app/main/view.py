@@ -3,6 +3,7 @@ from flask import render_template,url_for,flash,redirect
 from .forms import RegistrationForm,LoginForm
 from flask_login import login_user,logout_user,login_required
 from ..models import User
+from .. import db
 
 
 
