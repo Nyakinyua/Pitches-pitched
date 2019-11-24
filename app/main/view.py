@@ -10,6 +10,7 @@ from .forms import RegistrationForm,LoginForm
 
 
 
+
 # Views
 @main.route('/')
 def index():
@@ -50,17 +51,22 @@ def registration():
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!','Success')
-        return redirect(url_for('main.index'))
+        return redirect( url_for('main.login'))
 
     return render_template('register.html',title='Register',form=form)
 
 
-@main.route('/login')
+@main.route('/login',methods = ['GET','POST'])
 def login():
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        flash('Succsessfully Logged in')
+        
+        return redirect( url_for('main.index'))
 
-    form = LoginForm()
-
-    return render_template('login.html',title='login',form=form)
+        
+    title = "Pitches login"        
+    return render_template('login.html',login_form=login_form,title=title)
 
 # @main.route('/login',methods = ['GET','POST'])
 # def login():
