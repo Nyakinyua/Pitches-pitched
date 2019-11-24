@@ -1,18 +1,44 @@
 # from datetime import datetime
 from . import db
+from werkzeug.security import generate_password_hash,check_password_hash
 
 
 class User(db.Model):
+    '''
+    class with a table that defines all the User properties
+    '''
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key=True)
-    username = db.Column(db.String(255))
+    username = db.Column(db.String(13), unique=True, nullable=False)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    pass_secure =db.Column(db.String(30), nullable=False)
     # username = db.Column(db.String(13), unique=True, nullable=False)
     # email = db.Column(db.String(20), unique=True, nullable=False)
     # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    # password =db.Column(db.String(30), nullable=False)
+    
     # posts = db.relationship('Post',backref='author', lazy='True')
     
+    
+    @property
+    def password(self):
+        '''
+        function that raises an attribute error when one enters a password
+        '''
+        raise AttributeError('You cannot read the password attribute')
+
+    @password.setter
+    def password(self,password):
+        '''
+        function that generates a hashed password and saves it in the database
+        '''
+
+        self.pass_secure = generate_password_hash(password)
+
+    def verify_password(self,password):
+        '''
+        function that verifies a password to check if theres a match
+        '''
+        return check_password_hash(self.pass_secure,password)
     
     def __repr__(self):
 
