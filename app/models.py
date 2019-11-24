@@ -1,32 +1,34 @@
-from datetime import datetime
+# from datetime import datetime
 from . import db
 
 
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key=True)
-    username = db.Column(db.String(13), unique=True, nullable=False)
+    username = db.Column(db.String(255))
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    # username = db.Column(db.String(13), unique=True, nullable=False)
     # email = db.Column(db.String(20), unique=True, nullable=False)
     # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     # password =db.Column(db.String(30), nullable=False)
     # posts = db.relationship('Post',backref='author', lazy='True')
-    # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    
     
     def __repr__(self):
 
-        return f"post('{self.username}')"
+        return f'User {self.username}'
 
 
-# class Role(db.Model):
-#     __tablename__ = 'roles'
+class Role(db.Model):
+    __tablename__ = 'roles'
 
-#     id = db.Column(db.Integer,primary_key = True)
-#     name = db.Column(db.String(255))
-#     users = db.relationship('User',backref = 'role',lazy="dynamic")
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(20))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
 
 
-#     def __repr__(self):
-#         return f'User {self.name}'
+    def __repr__(self):
+        return f'User {self.name}'
 
 # class Post(db.Model):
 #     id = db.Column(db.Integer,primary_key=True)
