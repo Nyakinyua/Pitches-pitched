@@ -47,22 +47,28 @@ def index():
 
 @main.route('/register', methods=['GET','POST'])
 def registration():
-
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!','Success')
-        return redirect( url_for('main.login'))
+        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('main.login'))
+        title = "New Account"
+    return render_template('register.html',form = form)
 
-    return render_template('register.html',title='Register',form=form)
 
 
 @main.route('/login',methods = ['GET','POST'])
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        flash('Succsessfully Logged in')
+        user = User.query.filter_by(email = login_form.email.data).first()
+        if user is not None and user.verify_password(login_form.password.data):
+            login_user(user,login_form.remember.data)
+        
         
         return redirect( url_for('main.index'))
+        flash('Succsessfully Logged in')
 
         
     title = "Pitches login"        
