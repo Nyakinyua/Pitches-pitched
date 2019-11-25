@@ -2,27 +2,29 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-<div class="content-section"> 
-    <div class="row">
-      <div class= "col-md-2"> </div>
-      <div class="col-md-8">
+<div class="content-section">
+  <div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
       <!--Flash message -->
       {% for message in get_flashed_messages() %}
-        <div class="alert alert-danger">
+      <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{ message }}
-        </div>
+      </div>
       {% endfor %}
       <!-- Login form -->
-      {{wtf.quick_form(login_form)}}
+      <form method="POST" action="">
+        {{wtf.quick_form(login_form)}}
+    </div>
 
-      <div class="border-top pt-3">
-            <small class="text-muted">
-            Do You Have An Account? <a class="ml-2" href="{{url_for('main.register')}}">Sign Up Here</a>
-            </small>
-        </div>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+        Do You Have An Account? <a class="ml-2" href="{{url_for('main.register')}}">Sign Up Here</a>
+      </small>
+    </div>
     </form>
-</div>
-      
+  </div>
 
-{% endblock%}
+
+  {% endblock%}

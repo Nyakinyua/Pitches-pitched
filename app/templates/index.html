@@ -43,26 +43,27 @@
 
 
 
-  
-    <article class="media content-section">
-      <div class="row">
-        {% if category_list %}
-        {% for category in category_list %}
-        <div class="col-md-6">
-          <div class="thumbnail text-center">
-            <h5 class="card-header">{{category.title}}</h5>
-            <h5 class="card-header">{{category.category}}</h5>
-            <div class="card-body">
 
-              <h2>{{category.description}}</h2>
-              <footer class="footer"> Posted by {{category.user.username}}</footer>
-            
+  <article class="media content-section">
+    <div class="row">
+      {% if category_list %}
+      {% for category in category_list %}
+      <div class="col-md-6">
+        <div class="thumbnail text-center">
+          <h5 class="card-header">{{category.title}}</h5>
+          <h5 class="card-header">{{category.category}}</h5>
+          <div class="card-body">
+
+            <h2>{{category.description}}</h2>
+            <footer class="footer"> Posted by {{category.user.username}}</footer>
 
 
-            <a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
-            <a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-primary btn-sm"><i></i>Upvote
+
+            <a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-success"> Add new
+              comment</a>
+            <a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-success btn-lg"><i></i>Upvote
               <span>{{category.upvotes.count()}}</span></a>
-            <a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-sm"><i
+            <a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-lg"><i
                 class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
 
 
@@ -73,7 +74,7 @@
       {% endfor %}
       {% else %}
       {% endif %}
-  </div>
+    </div>
   </article>
 
   {% endblock content %}
