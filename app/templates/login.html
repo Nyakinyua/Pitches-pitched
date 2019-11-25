@@ -2,10 +2,11 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-<div class="content-section">
+<div class="container">
   <div class="row">
-    <div class="col-md-2"> </div>
-    <div class="col-md-8">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><br><br>
+      
       <!--Flash message -->
       {% for message in get_flashed_messages() %}
       <div class="alert alert-danger">
@@ -14,9 +15,11 @@
       </div>
       {% endfor %}
       <!-- Login form -->
-      <form method="POST" action="">
+      <h3 style="text-align: center; font-size: 40px;font-weight: 600;text-decoration: underline;">LogIn</h3>
+      
+      <form method="POST" action=""style="margin-top: 2em;">
         {{wtf.quick_form(login_form)}}
-    </div>
+    
 
     <div class="border-top pt-3">
       <small class="text-muted">
@@ -25,6 +28,7 @@
     </div>
     </form>
   </div>
-
+  <div class="col-md-2"></div>
+</div>
 
   {% endblock%}
