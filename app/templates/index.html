@@ -1,17 +1,79 @@
 {% extends 'layout.html' %}
+{% import 'macros.html' as macro %}
 {% block content %}
-    {% for post in posts %}
+
+<div class="container">
+  <h1 style="color:black;text-align: center;font-weight: 900;">Pitch Ideas</h1>
+  <br>
+  <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#product">Web App</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#interview">Job Interview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#pickupline">Pickup line</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#promotion">Promotion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#sales">Sales_pitch</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="product" class="container tab-pane active"><br>
+      {{ macro.display(productpitch) }}
+
+    </div>
+    <div id="interview" class="container tab-pane fade"><br>
+      {{ macro.display(interviewpitch) }}
+    </div>
+    <div id="pickupline" class="container tab-pane fade"><br>
+      {{ macro.display(pickuplines)}}
+    </div>
+    <div id="promotion" class="container tab-pane fade"><br>
+      {{ macro.display(promotionpitch) }}
+    </div>
+
+  </div>
+
+
+
+
+  
     <article class="media content-section">
-            <div class="media-body">
-              <div class="article-metadata">
-                <a class="mr-2" href="#">{{ post.author }}</a>
-                <small class="text-muted">{{ post.date_posted }}</small>
-              </div>
-              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-              <p class="article-content">{{ post.content }}</p>
-            </div>
-          </article>
-    {% endfor %}
+      <div class="row">
+        {% if category_list %}
+        {% for category in category_list %}
+        <div class="col-md-6">
+          <div class="thumbnail text-center">
+            <h5 class="card-header">{{category.title}}</h5>
+            <h5 class="card-header">{{category.category}}</h5>
+            <div class="card-body">
 
-    {% endblock content %}
+              <h2>{{category.description}}</h2>
+              <footer class="footer"> Posted by {{category.user.username}}</footer>
+            
 
+
+            <a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
+            <a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-primary btn-sm"><i></i>Upvote
+              <span>{{category.upvotes.count()}}</span></a>
+            <a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-sm"><i
+                class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
+
+
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+      {% else %}
+      {% endif %}
+  </div>
+  </article>
+
+  {% endblock content %}

@@ -6,7 +6,13 @@ class Config:
 
     '''
     SECRET_KEY = "dfghjxfghjertyui45679dfhj"
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nyakinyua:Lastman@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nyakinyua:Lastman@localhost/pitch'
+    #  email configurations
+    MAIL_SERVER='smtp.googlemail.com'
+    MAIL_PORT=587
+    MAIL_USE_TLS=True
+    MAIL_USERNAME=os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD=os.environ.get("MAIL_PASSWORD")
 class ProdConfig(Config):
     '''
      production configuration class which is a child of config class
@@ -19,7 +25,7 @@ class DevConfig(Config):
     Development configuration class, child of the class Config
     '''
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nyakinyua:Lastman@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nyakinyua:Lastman@localhost/pitch'
 
 
 config_options = {
