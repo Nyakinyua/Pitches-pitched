@@ -25,7 +25,7 @@ class User(db.Model):
     username = db.Column(db.String(225), unique=True, nullable=False)
     email = db.Column(db.String(225), unique=True, nullable=False)
 #     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    pass_secure =db.Column(db.String(225), nullable=False)
+    password =db.Column(db.String(225), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     # pitches = db.relationship('Post',backref='author', lazy='True')
     

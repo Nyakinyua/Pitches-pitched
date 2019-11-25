@@ -1,9 +1,9 @@
-from . import main,bcrypt
+from . import main
 from flask import render_template,url_for,flash,redirect
 from .forms import RegistrationForm,LoginForm
 from flask_login import login_user,logout_user,login_required
 from ..models import User
-from .. import db
+from .. import db,bcrypt
 
 
 
@@ -53,11 +53,11 @@ def index():
 def registration():
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hashed(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(email = form.email.data, username = form.username.data,password = hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account created for {form.username.data}!')
+        flash(f'Account created for {form.username.data}! You are now able to login')
         return redirect(url_for('main.login'))
         title = "New Account"
     return render_template('register.html',form = form)

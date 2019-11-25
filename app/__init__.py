@@ -13,7 +13,7 @@ login_manager.login_view = 'main.login'
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt()
 
 def create_app(config_name):
 
