@@ -58,12 +58,12 @@
 
             <a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-success"> Add new
               comment</a>
-            <a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-success btn-lg"><i></i>Upvote
+            <a class="btn btn-outline-success" href="{{url_for('main.upvote',pitch_id = category.id)}}"><i></i>Upvote
               <span>{{category.upvotes.count()}}</span></a>
-            <a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-lg"><i
-                class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
+            <a class="btn btn-outline-danger" href="{{url_for('main.downvote',pitch_id = category.id)}}">
+              <i></i>Downvote <span>{{category.downvotes.count()}}</span></a>
 
-
+                <button class="btn danger">Danger</button>
           </div>
         </div>
 

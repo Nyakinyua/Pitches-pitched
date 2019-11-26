@@ -17,15 +17,15 @@ class ProdConfig(Config):
     '''
      production configuration class which is a child of config class
     '''
-    pass
-
+    
+    SQLALCHEMY_DATABASE_URI =os.environ.get("DATABASE_URL")
 
 class DevConfig(Config):
     '''
     Development configuration class, child of the class Config
     '''
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nyakinyua:Lastman@localhost/pitch'
+    
 
 
 config_options = {
