@@ -39,11 +39,24 @@
                       <li class="nav-item">
                         <a class="nav-link"  href="/register">Register</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                      </li>
-                    </ul>
+                      
+                    
                   </div>
+                  <div class="navbar-nav navbar-right">
+                        {% if current_user.is_authenticated %}
+                       <li class="nav-item"><a class="nav-link"  style="color: white;font-weight:700;">
+                                {{current_user.username}}
+                        </a></li>
+    
+                       <li class="nav-item"><a class="nav-link" href="/pitches/new/">Create Pitch</a></li>
+                        
+                        <li class="nav-item">
+                                <a class="nav-link" href="{{url_for('main.logout')}}">Sign Out</a>
+                              </li>
+                       
+                        {% endif %}
+                    </div>
+                </ul>
                 </div>
               </nav>
 <!-- 
@@ -65,7 +78,7 @@
                         <a class="nav-item nav-link" href="/register">Register</a>
                     </div>
                 </div> -->
-
+<!-- 
                 
                     <div class="navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
@@ -84,7 +97,7 @@
                 
             </div>
         </nav>
-    </header>
+    </header> -->
     <div class="container-fluid">
         
                 {% block content %} {% endblock %}
