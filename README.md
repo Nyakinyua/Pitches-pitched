@@ -79,6 +79,7 @@ Clone this repository in your termiminal
 No known bugs so far
 
 ## Support Details
+To support this application or add on to the application, feel free to contact the developer. [Nyakinyua](wanyakinyua968@gmail.com)
 
 
 ## License
