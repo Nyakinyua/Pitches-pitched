@@ -5,7 +5,7 @@ Author
 [Nyakinyua](https://github.com/Nyakinyua)
 
 Link to Live Site
-https://pitchit.herokuapp.com/
+https://pitch-it-ke.herokuapp.com/
 
 Description
 Pitches-pitched is a web application that allows users to submit the one-minute pitches and thereafter others can be able to vote on the pitches and add comments. Pitches are based on categories.What are you waiting for? Make better first and lasting  impressions in 60 seconds because that's what the world needs! 
