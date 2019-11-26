@@ -1,4 +1,4 @@
-export MAIL_USERNAME='pitchapp001@gmail.com'
-export MAIL_PASSWORD='documentation'
+export MAIL_USERNAME=''
+export MAIL_PASSWORD=''
 
 python3.6 manage.py server
