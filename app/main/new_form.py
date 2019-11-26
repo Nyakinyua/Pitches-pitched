@@ -6,7 +6,7 @@ from wtforms import ValidationError
 
 class PitchForm(FlaskForm):
     title = StringField('Title',validators=[Required()])
-    category =SelectField ('Category',choices=[ ('promotionpitch','promotionpitch'), ('interviewpitch','interviewpitch'),('pickuplines','pickuplines'),('productpitch','productpitch')],validators=[Required()])
+    category =SelectField ('Category',choices=[ ('promotionpitch','promotionpitch'), ('interviewpitch','interviewpitch'),('pickuplines','pickuplines'),('productpitch','productpitch')('salespitch','salespitch')],validators=[Required()])
     description = TextAreaField('Pitch my idea',validators=[Required()])
     submit = SubmitField('submit')
 
